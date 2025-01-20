@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Contact -->
+    <section class="contact-area">
+        <div class="container">
+            <div class="gx-row d-flex justify-content-between gap-24">
+                <div class="contact-infos">
+                    <h3 data-aos="fade-up">Contact Info</h3>
+                    <ul class="contact-details">
+                        {% for i in contact_me %}
+                        <li class="d-flex align-items-center" data-aos="zoom-in">
+                            <div class="icon-box shadow-box">
+                                <i class="iconoir-mail"></i>
+                            </div>
+                            <div class="right">
+                                <span>MAIL us</span>
+                                <h4>{{ i.email}}</h4>
+                            </div>
+                        </li>
+
+                        <li class="d-flex align-items-center" data-aos="zoom-in">
+                            <div class="icon-box shadow-box">
+                                <i class="iconoir-phone"></i>
+                            </div>
+                            <div class="right">
+                                <span>Contact Us</span>
+                                <h4>{{ i.phone_number }}</h4>
+                            </div>
+                        </li>
+
+                        <li class="d-flex align-items-center" data-aos="zoom-in">
+                            <div class="icon-box shadow-box">
+                                <i class="iconoir-pin-alt"></i>
+                            </div>
+                            <div class="right">
+                                <span>Location</span>
+                                <h4>{{ i.location }}</h4>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+{#                    <h3 data-aos="fade-up">Social Info</h3>#}
+{#                    <ul class="social-links d-flex align-center" data-aos="zoom-in">#}
+{#                        <li><a class="shadow-box" href="#"><i class="iconoir-telegram"></i></a></li>#}
+{#                        <li><a class="shadow-box" href="#"><i class="iconoir-twitter"></i></a></li>#}
+{#                        <li><a class="shadow-box" href="#"><i class="iconoir-instagram"></i></a></li>#}
+{#                    </ul>#}
+                </div>
+
+                <div data-aos="zoom-in" class="contact-form">
+                    <div class="shadow-box">
+                        <img src="{% static "assets/images/bg1.png" %}" alt="BG" class="bg-img">
+                        <img src="{% static "assets/images/icon3.png" %}" alt="Icon">
+                        <h1>Let’s work <span>together.</span></h1>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="alert alert-success messenger-box-contact__msg" style="display: none"
+                                 role="alert">
+                                Your message was sent successfully.
+                            </div>
+                            <div class="input-group">
+                                {{form.full_name}}
+                            </div>
+                            <div class="input-group">
+                                {{form.phone_number}}
+                            </div>
+                            <div class="input-group">
+                                {{form.message}}
+                            </div>
+                            <div class="input-group">
+                                <button name="submit" type="submit">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
